@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - DB Dashboard</title>
+    <link rel="stylesheet" href="../dashboard/style.css">
+    <style>
+        /* Specific styles for login page */
+        body.login-page { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f7f8fa; }
+        .login-container { background-color: #ffffff; padding: 40px 50px; border-radius: 16px; box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; }
+        .login-container .logo { margin-bottom: 30px; } /* Use logo class from main style */
+        .login-container .logo img { max-width: 50%; height: auto; /* Adjust logo size */ }
+        .login-container h2 { font-size: 1.5em; margin-bottom: 25px; color: #344054; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 0.9em; font-weight: 500; margin-bottom: 6px; color: #344054; }
+        .input-group input { width: 100%; padding: 12px 15px; border: 1px solid #d0d5dd; border-radius: 8px; font-size: 1em; }
+        .login-button { width: 100%; padding: 14px; background-color: #5454d4; color: #ffffff; border: none; border-radius: 8px; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 10px; transition: background-color 0.2s; }
+        .login-button:hover { background-color: #4040a8; }
+        .error-message { color: #f04438; font-size: 0.9em; margin-top: 15px; min-height: 1.2em; text-align: center; display: none; }
+    </style>
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="logo">
+            <img src="../dashboard/images/logo.jpeg" alt="Logo">
+        </div>
+        <h2>Welcome Back!</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div id="loginError" class="error-message">Invalid credentials!</div>
+            <button type="submit" class="login-button">Login</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const errorDiv = document.getElementById('loginError');
+            const enteredUsername = usernameInput.value;
+            const enteredPassword = passwordInput.value;
+            const correctUsername = "Pattaradanais";
+            const correctPassword = "Hanalpn@089409";
+
+            if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
+                sessionStorage.setItem('isLoggedIn', 'true');
+                sessionStorage.setItem('userIdentifier', enteredUsername);
+                window.location.href = '../home/home.html'; // Redirect to home
+            } else {
+                errorDiv.textContent = "Username หรือ Password ไม่ถูกต้อง";
+                errorDiv.style.display = 'block';
+                passwordInput.value = '';
+                usernameInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>
