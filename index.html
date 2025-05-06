@@ -3,64 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - DB Dashboard</title>
-    <link rel="stylesheet" href="../dashboard/style.css">
-    <style>
-        /* Specific styles for login page */
-        body.login-page { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f7f8fa; }
-        .login-container { background-color: #ffffff; padding: 40px 50px; border-radius: 16px; box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; }
-        .login-container .logo { margin-bottom: 30px; } /* Use logo class from main style */
-        .login-container .logo img { max-width: 50%; height: auto; /* Adjust logo size */ }
-        .login-container h2 { font-size: 1.5em; margin-bottom: 25px; color: #344054; }
-        .input-group { margin-bottom: 20px; text-align: left; }
-        .input-group label { display: block; font-size: 0.9em; font-weight: 500; margin-bottom: 6px; color: #344054; }
-        .input-group input { width: 100%; padding: 12px 15px; border: 1px solid #d0d5dd; border-radius: 8px; font-size: 1em; }
-        .login-button { width: 100%; padding: 14px; background-color: #5454d4; color: #ffffff; border: none; border-radius: 8px; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 10px; transition: background-color 0.2s; }
-        .login-button:hover { background-color: #4040a8; }
-        .error-message { color: #f04438; font-size: 0.9em; margin-top: 15px; min-height: 1.2em; text-align: center; display: none; }
-    </style>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <div class="logo">
-            <img src="../dashboard/images/logo.jpeg" alt="Logo">
-        </div>
-        <h2>Welcome Back!</h2>
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo">
+                <img src="images/logo1234.png" alt="Company Logo"> </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../home/home.html" class="nav-link"><i class="fas fa-home"></i></a></li>
+                        <li><a href="../dashboard/index.html" class="nav-link active"><i class="fas fa-chart-pie"></i></a></li>
+                        <li><a href="../wallet/wallet.html" class="nav-link"><i class="fas fa-wallet"></i></a></li>
+                        <li><a href="../creditcard/creditcard.html" class="nav-link"><i class="fas fa-credit-card"></i></a></li>
+                        <li><a href="../exchange/exchange.html" class="nav-link"><i class="fas fa-exchange-alt"></i></a></li>
+                        <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i></a></li>
+                        <li><a href="../email/email.html" class="nav-link"><i class="fas fa-envelope"></i></a></li>
+                        <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-cog"></i></a></li>
+                        <li><a href="../logout/logout.html" class="nav-link"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </nav>
+            <div class="profile-bottom">
+                <a href="../account/account.html" title="View Account Settings">
+                     <img src="images/profile_pic.JPEG" alt="Profile">
+                </a>
             </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div id="loginError" class="error-message">Invalid credentials!</div>
-            <button type="submit" class="login-button">Login</button>
-        </form>
-    </div>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            const errorDiv = document.getElementById('loginError');
-            const enteredUsername = usernameInput.value;
-            const enteredPassword = passwordInput.value;
-            const correctUsername = "Pattaradanais";
-            const correctPassword = "Hanalpn@089409";
+        </aside>
 
-            if (enteredUsername === correctUsername && enteredPassword === correctPassword) {
-                sessionStorage.setItem('isLoggedIn', 'true');
-                sessionStorage.setItem('userIdentifier', enteredUsername);
-                window.location.href = '../home/home.html'; // Redirect to home
-            } else {
-                errorDiv.textContent = "Username หรือ Password ไม่ถูกต้อง";
-                errorDiv.style.display = 'block';
-                passwordInput.value = '';
-                usernameInput.focus();
-            }
-        });
-    </script>
+        <main class="main-content">
+             <header class="main-header">
+                 <h1 id="welcome-message">Good morning!</h1>
+                 <div class="header-actions">
+                     <button class="icon-button"><i class="fas fa-chevron-left"></i></button>
+                     <button class="icon-button"><i class="fas fa-chevron-right"></i></button>
+                     <img src="images/user_avatar.JPEG" alt="User Avatar" class="user-avatar">
+                     <button class="icon-button"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+             </header>
+
+             <section class="stats-cards-grid">
+                 <div class="card stat-card">
+                    <div class="card-header"><i class="fas fa-university card-icon icon-bank"></i><button class="options-button"><i class="fas fa-ellipsis-h"></i></button></div>
+                    <div class="card-body"><span class="stat-value">$4,362</span><span class="stat-label">Your bank balance</span></div>
+                 </div>
+                 <div class="card stat-card">
+                    <div class="card-header"><i class="fas fa-receipt card-icon icon-receipt"></i><button class="options-button"><i class="fas fa-ellipsis-h"></i></button></div>
+                    <div class="card-body"><span class="stat-value">12</span><span class="stat-label">Uncategorized transactions</span></div>
+                 </div>
+                 <div class="card stat-card">
+                    <div class="card-header"><i class="fas fa-users card-icon icon-users"></i><button class="options-button"><i class="fas fa-ellipsis-h"></i></button></div>
+                    <div class="card-body"><span class="stat-value">1906</span><span class="stat-label">Employees working today</span></div>
+                 </div>
+                 <div class="card stat-card">
+                     <div class="card-header"><i class="fas fa-chart-line card-icon icon-spending"></i><button class="options-button"><i class="fas fa-ellipsis-h"></i></button></div>
+                     <div class="card-body"><span class="stat-value">$3,287.49</span><span class="stat-label">This week's card spending</span></div>
+                 </div>
+             </section>
+
+             <section class="mid-section-grid">
+                 <div class="left-stats">
+                    <div class="card small-stat-card"><span class="stat-label">New clients</span><div class="stat-line"><span class="stat-value-large">72</span><span class="percentage-badge positive">+32.7%</span></div></div>
+                    <div class="card small-stat-card"><span class="stat-label">Invoices overdue</span><div class="stat-line"><span class="stat-value-large">13</span><span class="percentage-badge negative">-6.7%</span></div></div>
+                 </div>
+                 <div class="card revenue-graph">
+                      <div class="card-header space-between"><h3>Revenue</h3><div class="time-selector">Last 7 days <i class="fas fa-chevron-down"></i></div></div>
+                      <div class="graph-placeholder"><canvas id="revenueChart"></canvas></div>
+                 </div>
+             </section>
+
+             <section class="card recent-emails">
+                 <div class="card-header"><h3>Recent emails</h3></div>
+                 <ul class="email-list">
+                    <li><img src="https://via.placeholder.com/40/FFCDD2/333/?text=GM" alt="Avatar"><div class="email-details"><span class="sender">General Manager</span><span class="subject">Update working today</span></div><span class="email-time">11:16 AM</span></li>
+                    <li><img src="https://via.placeholder.com/40/C8E6C9/333/?text=DM" alt="Avatar"><div class="email-details"><span class="sender">Department Manager</span><span class="subject">Update on marketing campaign</span></div><span class="email-time">14:32 PM</span></li>
+                    <li><img src="https://via.placeholder.com/40/BBDEFB/333/?text=LE" alt="Avatar"><div class="email-details"><span class="sender">Leader EM</span><span class="subject">Designly 2.0 is about to launch</span></div><span class="email-time">Yesterday at 8:51 PM</span></li>
+                    <li><img src="https://via.placeholder.com/40/D1C4E9/333/?text=OW" alt="Avatar"><div class="email-details"><span class="sender">Owner</span><span class="subject">Verified Request My Job - Please review</span></div><span class="email-time">Yesterday at 8:49 PM</span></li>
+                 </ul>
+             </section>
+              <footer class="main-footer">
+                &copy; 2025 LPN Development Group. All Rights Reserved.
+                </footer>
+             </main>
+
+        <aside class="sidebar-right">
+             <div class="card dark-card formation-status"><h4>Formation status</h4><p class="status-label">In progress</p><div class="progress-bar-container"><div class="progress-bar" style="width: 75%;"></div></div><p class="status-details">Estimated processing<br><strong>4-5 business days</strong></p><button class="btn-view-status">View status</button></div>
+             <div class="todo-list"><h4>Your To-do list</h4><ul><li><div class="todo-icon"><i class="fas fa-dollar-sign"></i></div><div class="todo-details"><span>Run payroll</span><small>Mar 8 at 6:00 pm</small></div></li><li><div class="todo-icon"><i class="fas fa-clock"></i></div><div class="todo-details"><span>Review time off request</span><small>Mar 9 at 6:00 pm</small></div></li><li><div class="todo-icon"><i class="fas fa-signature"></i></div><div class="todo-details"><span>Sign board resolution</span><small>Mar 13 at 6:00 pm</small></div></li><li><div class="todo-icon"><i class="fas fa-user-plus"></i></div><div class="todo-details"><span>Finish onboarding Tony</span><small>Mar 16 at 6:00 pm</small></div></li></ul></div>
+             <div class="card dark-card board-meeting"><h4>Board meeting</h4><p class="meeting-time">Jun 13 at 8:00 AM</p><p class="meeting-details">You have been invited to attend a meeting of the Board Directors.</p></div>
+        </aside>
+         </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

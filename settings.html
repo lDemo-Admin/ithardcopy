@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings</title>
+    <link rel="stylesheet" href="../dashboard/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* สไตล์เพิ่มเติมสำหรับหน้า Settings */
+        .settings-section {
+            margin-bottom: 30px;
+        }
+        .settings-section h2 {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: #101828;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaecf0;
+        }
+        .setting-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f2f4f7;
+        }
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+        .setting-item .description {
+            color: #667085;
+            font-size: 0.9em;
+            margin-top: 2px;
+        }
+        .setting-item strong {
+            color: #344054;
+            font-weight: 500;
+        }
+        .setting-item .action-element {
+            margin-left: 20px; /* ระยะห่างจากข้อความ */
+            flex-shrink: 0; /* ไม่ให้ element หด */
+        }
+
+        /* Toggle Switch CSS */
+        .switch { position: relative; display: inline-block; width: 50px; height: 26px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #5454d4; }
+        input:focus + .slider { box-shadow: 0 0 1px #5454d4; }
+        input:checked + .slider:before { transform: translateX(24px); }
+
+        /* Radio buttons for Theme */
+        .theme-options label { margin-right: 15px; color: #344054; font-weight: 500; cursor: pointer;}
+        .theme-options input[type="radio"] { margin-right: 5px; accent-color: #5454d4; }
+
+         /* Save Button */
+         .save-button-container {
+            margin-top: 30px;
+            text-align: right;
+         }
+        .save-button {
+            padding: 12px 25px;
+            background-color: #5454d4;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .save-button:hover { background-color: #4040a8; }
+
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo"> <img src="../dashboard/images/logo1234.png" alt="Logo"> </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../home/home.html" class="nav-link"><i class="fas fa-home"></i></a></li>
+                    <li><a href="../dashboard/index.html" class="nav-link active"><i class="fas fa-chart-pie"></i></a></li>
+                    <li><a href="../wallet/wallet.html" class="nav-link"><i class="fas fa-wallet"></i></a></li>
+                    <li><a href="../creditcard/creditcard.html" class="nav-link"><i class="fas fa-credit-card"></i></a></li>
+                    <li><a href="../exchange/exchange.html" class="nav-link"><i class="fas fa-exchange-alt"></i></a></li>
+                    <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i></a></li>
+                    <li><a href="../email/email.html" class="nav-link"><i class="fas fa-envelope"></i></a></li>
+                    <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-cog"></i></a></li>
+                    <li><a href="../logout/logout.html" class="nav-link"><i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </nav>
+            <div class="profile-bottom">
+                 <a href="../account/account.html" title="View Account Settings">
+                     <img src="../dashboard/images/profile_pic.jpeg" alt="Profile">
+                 </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+             <header class="main-header">
+                 <h1>Settings</h1>
+             </header>
+
+             <div id="settings-content">
+
+                 <section class="settings-section">
+                     <h2>Profile & Account</h2>
+                     <div class="card">
+                         <div class="setting-item">
+                            <div>
+                                <strong>Account Information</strong>
+                                <div class="description">View and edit your profile details.</div>
+                            </div>
+                            <div class="action-element">
+                                <a href="../account/account.html" class="btn-email">Go to Account</a> </div>
+                         </div>
+                     </div>
+                 </section>
+
+                 <section class="settings-section">
+                     <h2>Security</h2>
+                     <div class="card">
+                         <div class="setting-item">
+                            <div>
+                                <strong>Two-Factor Authentication (2FA)</strong>
+                                <div class="description">Add an extra layer of security to your account.</div>
+                            </div>
+                             <div class="action-element">
+                                <label class="switch">
+                                    <input type="checkbox" id="twoFactorToggle">
+                                    <span class="slider"></span>
+                                </label>
+                             </div>
+                         </div>
+                         <div class="setting-item">
+                             <div>
+                                <strong>Change Password</strong>
+                                <div class="description">Update your login password regularly.</div>
+                             </div>
+                              <div class="action-element">
+                                 <a href="#" class="action-link">Change</a>
+                              </div>
+                         </div>
+                         <div class="setting-item">
+                              <div>
+                                <strong>Change Logout Code</strong>
+                                <div class="description">Modify the 6-digit code used for logout confirmation.</div>
+                              </div>
+                              <div class="action-element">
+                                  <a href="#" class="action-link">Change</a>
+                              </div>
+                         </div>
+                     </div>
+                 </section>
+
+                 <section class="settings-section">
+                     <h2>Notifications</h2>
+                     <div class="card">
+                         <div class="setting-item">
+                             <div>
+                                <strong>Email Notifications</strong>
+                                <div class="description">Receive important updates via email.</div>
+                             </div>
+                              <div class="action-element">
+                                 <label class="switch">
+                                     <input type="checkbox" id="emailNotificationToggle" checked> <span class="slider"></span>
+                                 </label>
+                              </div>
+                         </div>
+                          <div class="setting-item">
+                             <div>
+                                <strong>Invoice Overdue Alerts</strong>
+                                <div class="description">Get notified about overdue invoices.</div>
+                             </div>
+                              <div class="action-element">
+                                 <label class="switch">
+                                     <input type="checkbox" id="invoiceAlertToggle" checked>
+                                     <span class="slider"></span>
+                                 </label>
+                              </div>
+                         </div>
+                         <div class="setting-item">
+                            <div>
+                               <strong>New Client Messages</strong>
+                               <div class="description">Receive notifications for new client messages.</div>
+                            </div>
+                             <div class="action-element">
+                                <label class="switch">
+                                    <input type="checkbox" id="messageAlertToggle">
+                                    <span class="slider"></span>
+                                </label>
+                             </div>
+                        </div>
+                     </div>
+                 </section>
+
+                  <section class="settings-section">
+                     <h2>Appearance</h2>
+                     <div class="card">
+                         <div class="setting-item">
+                            <div>
+                                <strong>Theme</strong>
+                                <div class="description">Choose your preferred interface theme.</div>
+                            </div>
+                            <div class="action-element theme-options">
+                                <label>
+                                    <input type="radio" name="theme" value="light" checked> Light
+                                </label>
+                                <label>
+                                    <input type="radio" name="theme" value="dark"> Dark
+                                </label>
+                            </div>
+                         </div>
+                     </div>
+                 </section>
+
+                 <div class="save-button-container">
+                     <button class="save-button">Save Changes</button>
+                 </div>
+
+             </div> <footer class="main-footer">
+                 &copy; 2025 LPN Development Group. All Rights Reserved.
+             </footer>
+        </main>
+    </div>
+
+    <script src="../dashboard/script.js"></script>
+</body>
+</html>

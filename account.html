@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Settings</title>
+    <link rel="stylesheet" href="../dashboard/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .account-details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+            gap: 15px 25px; /* Row gap, Column gap */
+            margin-top: 20px; /* Space after photo section */
+        }
+        .detail-item {
+            display: flex;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #f2f4f7; /* Lighter border */
+            font-size: 0.95em;
+        }
+         .detail-item:last-child {
+            border-bottom: none;
+        }
+        .detail-item strong {
+            color: #344054;
+            font-weight: 500;
+            margin-right: 15px; /* Space between label and value */
+            flex-shrink: 0; /* Prevent label from shrinking too much */
+        }
+        /* Group value and action link together */
+        .detail-value-action {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* Space between value and link */
+            color: #667085;
+            text-align: right; /* Align value/action to the right */
+            flex-grow: 1; /* Allow this part to grow */
+            justify-content: flex-end; /* Push to the right */
+        }
+
+        .detail-item span { /* Style for the value */
+             word-break: break-all; /* Break long emails/usernames */
+        }
+
+        .detail-item .action-link {
+             color: #5454d4;
+             cursor: pointer;
+             font-weight: 500;
+             text-decoration: none; /* Remove underline by default */
+             white-space: nowrap; /* Prevent link text wrapping */
+        }
+         .detail-item .action-link:hover {
+            text-decoration: underline; /* Underline on hover */
+            color: #4040a8;
+         }
+         /* Photo Section */
+         .photo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eaecf0; /* Separator */
+         }
+          .photo-section img {
+             width: 80px;
+             height: 80px;
+             border-radius: 50%;
+             object-fit: cover;
+          }
+          .change-photo-btn {
+             padding: 8px 15px;
+             border: 1px solid #d0d5dd;
+             background-color: #fff;
+             color: #344054;
+             border-radius: 8px;
+             cursor: pointer;
+             font-weight: 500;
+             font-size: 0.9em;
+             transition: background-color 0.2s;
+          }
+          .change-photo-btn:hover {
+            background-color: #f9fafb;
+          }
+          /* Ensure card content has some padding */
+         #account-info .card {
+            padding: 24px;
+         }
+    </style>
+     </head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo">
+                <img src="../dashboard/images/logo1234.png" alt="Logo"> </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="../home/home.html" class="nav-link"><i class="fas fa-home"></i></a></li>
+                    <li><a href="../dashboard/index.html" class="nav-link active"><i class="fas fa-chart-pie"></i></a></li>
+                    <li><a href="../wallet/wallet.html" class="nav-link"><i class="fas fa-wallet"></i></a></li>
+                    <li><a href="../creditcard/creditcard.html" class="nav-link"><i class="fas fa-credit-card"></i></a></li>
+                    <li><a href="../exchange/exchange.html" class="nav-link"><i class="fas fa-exchange-alt"></i></a></li>
+                    <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i></a></li>
+                    <li><a href="../email/email.html" class="nav-link"><i class="fas fa-envelope"></i></a></li>
+                    <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-cog"></i></a></li>
+                    <li><a href="../logout/logout.html" class="nav-link"><i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </nav>
+            <div class="profile-bottom">
+                 <img src="../dashboard/images/profile_pic.JPEG" alt="Profile">
+            </div>
+        </aside>
+
+        <main class="main-content">
+             <header class="main-header">
+                 <h1>Account Settings</h1>
+             </header>
+
+             <div id="account-info">
+                 <div class="card">
+                    <div class="photo-section">
+                         <img src="../dashboard/images/profile_pic.JPEG" alt="Current Photo" id="account-photo-preview">
+                         <button class="change-photo-btn">Change Photo</button>
+                    </div>
+
+                    <div class="account-details-grid">
+                        <div class="detail-item">
+                            <strong>Username:</strong>
+                            <div class="detail-value-action">
+                                <span id="account-username">Loading...</span>
+                                </div>
+                        </div>
+                         <div class="detail-item">
+                            <strong>EN Number:</strong>
+                            <div class="detail-value-action">
+                                <span id="account-en-number">Loading...</span>
+                                </div>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Email:</strong>
+                             <div class="detail-value-action">
+                                <span id="account-email">Loading...</span>
+                                <a href="#" class="action-link">Change</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Password:</strong>
+                             <div class="detail-value-action">
+                                <span>********</span> <a href="#" class="action-link">Change</a>
+                            </div>
+                        </div>
+                         <div class="detail-item">
+                            <strong>Logout Code:</strong>
+                             <div class="detail-value-action">
+                                <span>******</span> <a href="#" class="action-link">Change</a>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <strong>Phone Number:</strong>
+                             <div class="detail-value-action">
+                                <span id="account-phone">099-***-****</span> <a href="#" class="action-link">Change</a>
+                            </div>
+                        </div>
+                         <div class="detail-item">
+                            <strong>Work Experience:</strong>
+                             <div class="detail-value-action">
+                                <span>10 Months 16 Day</span> </div>
+                        </div>
+                          <div class="detail-item">
+                            <strong>Starting Date:</strong>
+                             <div class="detail-value-action">
+                                <span>03-Mar-2025</span> </div>
+                        </div>
+                         <div class="detail-item">
+                            <strong>Valid Until:</strong>
+                             <div class="detail-value-action">
+                                <span>19-Dec-2025</span> </div>
+                        </div>
+                    </div> </div> </div> 
+                    <footer class="main-footer">
+                        &copy; 2025 LPN Development Group. All Rights Reserved.
+                        </footer>
+                     </main>
+                </main>
+
+    </div>
+
+    <script src="../dashboard/script.js"></script>
+</body>
+</html>

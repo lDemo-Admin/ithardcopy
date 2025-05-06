@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Logout</title>
+    <link rel="stylesheet" href="../dashboard/style.css">
+    <style>
+        /* Styles specific to logout page (similar to login) */
+        body.logout-page { display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f7f8fa; }
+        .logout-container { background-color: #ffffff; padding: 40px 50px; border-radius: 16px; box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; text-align: center; }
+        .logout-container h2 { font-size: 1.5em; margin-bottom: 15px; color: #344054; }
+        .logout-container p { font-size: 1em; color: #667085; margin-bottom: 25px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; font-size: 0.9em; font-weight: 500; margin-bottom: 6px; color: #344054; }
+        .input-group input[type="password"] { width: 100%; padding: 12px 15px; border: 1px solid #d0d5dd; border-radius: 8px; font-size: 1.2em; text-align: center; letter-spacing: 0.5em; }
+        .logout-button { width: 100%; padding: 14px; background-color: #f04438; color: #ffffff; border: none; border-radius: 8px; font-size: 1.1em; font-weight: 600; cursor: pointer; margin-top: 10px; transition: background-color 0.2s; }
+        .logout-button:hover { background-color: #d92d20; }
+        .error-message { color: #f04438; font-size: 0.9em; margin-top: 15px; min-height: 1.2em; text-align: center; display: none; }
+    </style>
+</head>
+<body class="logout-page">
+    <div class="logout-container">
+        <h2>Confirm Logout</h2>
+        <p>Please enter your 6-digit code to confirm logout.</p>
+        <form id="logoutForm">
+            <div class="input-group">
+                <label for="logoutCode">Logout Code</label>
+                <input type="password" id="logoutCode" name="logoutCode" maxlength="6" pattern="\d{6}" inputmode="numeric" required>
+            </div>
+            <div id="logoutError" class="error-message">Invalid code!</div>
+            <button type="submit" class="logout-button">Confirm Logout</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('logoutForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const codeInput = document.getElementById('logoutCode');
+            const errorDiv = document.getElementById('logoutError');
+            const enteredCode = codeInput.value;
+            const correctCode = "089409";
+
+            if (enteredCode === correctCode) {
+                sessionStorage.removeItem('isLoggedIn');
+                sessionStorage.removeItem('userIdentifier');
+                window.location.href = '../login/login.html'; // Redirect to login
+            } else {
+                errorDiv.textContent = "รหัสยืนยันไม่ถูกต้อง";
+                errorDiv.style.display = 'block';
+                codeInput.value = '';
+                codeInput.focus();
+            }
+        });
+    </script>
+</body>
+</html>

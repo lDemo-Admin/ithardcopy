@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbox</title>
+    <link rel="stylesheet" href="../dashboard/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* สไตล์เพิ่มเติมสำหรับหน้า Email */
+        .email-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaecf0;
+        }
+        .btn-email {
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #d0d5dd;
+            background-color: #ffffff;
+            color: #344054;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .btn-email:hover {
+            background-color: #f9fafb;
+        }
+        .btn-email i {
+            margin-right: 8px;
+        }
+        .btn-compose {
+            background-color: #5454d4;
+            border-color: #5454d4;
+            color: #ffffff;
+        }
+         .btn-compose:hover {
+            background-color: #4040a8;
+            border-color: #4040a8;
+        }
+
+        .email-list-container {
+           padding: 0; /* เอา padding ของ card ออกถ้าต้องการให้ list ชิดขอบ */
+        }
+
+        .inbox-email-list {
+            list-style: none;
+        }
+        .inbox-email-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 24px; /* Padding ข้างใน list item */
+            border-bottom: 1px solid #eaecf0;
+            cursor: pointer;
+            transition: background-color 0.1s ease-in-out;
+        }
+        .inbox-email-list li:last-child {
+            border-bottom: none;
+        }
+        .inbox-email-list li:hover {
+            background-color: #f9fafb;
+        }
+        .inbox-email-list li.unread { /* สไตล์สำหรับ email ยังไม่ได้อ่าน */
+            background-color: #f2f4ff; /* สีพื้นหลังจางๆ */
+            font-weight: 600; /* ตัวหนา */
+        }
+         .inbox-email-list li.unread .inbox-sender,
+         .inbox-email-list li.unread .inbox-subject {
+            font-weight: 600;
+            color: #1d1d30;
+         }
+
+        .inbox-avatar img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .inbox-content {
+            flex-grow: 1;
+            overflow: hidden;
+        }
+        .inbox-sender {
+            font-size: 0.95em;
+            font-weight: 500;
+            color: #344054;
+            margin-bottom: 2px;
+            display: block; /* ทำให้ขึ้นบรรทัดใหม่ */
+        }
+        .inbox-subject {
+            font-size: 0.9em;
+            color: #667085;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+             display: block;
+        }
+         .inbox-snippet {
+             font-size: 0.85em;
+             color: #888;
+             white-space: nowrap;
+             overflow: hidden;
+             text-overflow: ellipsis;
+             margin-top: 3px;
+              display: block;
+         }
+
+        .inbox-meta {
+            text-align: right;
+            flex-shrink: 0;
+            margin-left: 15px;
+        }
+        .inbox-time {
+            font-size: 0.85em;
+            color: #98a2b3;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .inbox-status i { /* ไอคอนดาว หรืออื่นๆ */
+            color: #ffc107; /* สีดาว */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo">
+                <img src="../dashboard/images/logo1234.png" alt="Company Logo"> </div>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="../home/home.html" class="nav-link"><i class="fas fa-home"></i></a></li>
+                        <li><a href="../dashboard/index.html" class="nav-link active"><i class="fas fa-chart-pie"></i></a></li>
+                        <li><a href="../wallet/wallet.html" class="nav-link"><i class="fas fa-wallet"></i></a></li>
+                        <li><a href="../creditcard/creditcard.html" class="nav-link"><i class="fas fa-credit-card"></i></a></li>
+                        <li><a href="../exchange/exchange.html" class="nav-link"><i class="fas fa-exchange-alt"></i></a></li>
+                        <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i></a></li>
+                        <li><a href="../email/email.html" class="nav-link"><i class="fas fa-envelope"></i></a></li>
+                        <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-cog"></i></a></li>
+                        <li><a href="../logout/logout.html" class="nav-link"><i class="fas fa-sign-out-alt"></i></a></li>
+                    </ul>
+                </nav>
+            <div class="profile-bottom">
+                 <a href="../account/account.html" title="View Account Settings">
+                     <img src="../dashboard/images/profile_pic.JPEG" alt="Profile">
+                 </a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+             <header class="main-header">
+                 <h1>Inbox</h1>
+                 </header>
+
+             <div id="email-inbox">
+                 <div class="email-actions">
+                     <button class="btn-email btn-compose"><i class="fas fa-edit"></i> Compose</button>
+                     <button class="btn-email"><i class="fas fa-sync-alt"></i> Refresh</button>
+                     <button class="btn-email"><i class="fas fa-archive"></i> Archive</button>
+                     <button class="btn-email"><i class="fas fa-trash"></i> Delete</button>
+                 </div>
+
+                 <div class="card email-list-container">
+                     <ul class="inbox-email-list">
+                         <li class="unread"> <div class="inbox-avatar"><img src="https://via.placeholder.com/40/D1C4E9/333/?text=SA" alt="SA"></div>
+                             <div class="inbox-content">
+                                 <span class="inbox-sender">System Alert</span>
+                                 <span class="inbox-subject">Critical: Server CPU Usage High</span>
+                                 <span class="inbox-snippet">Server WEB01 CPU usage exceeded 95% threshold...</span>
+                             </div>
+                             <div class="inbox-meta">
+                                 <span class="inbox-time">10:50 AM</span>
+                                 <span class="inbox-status"><i class="fas fa-star"></i></span> </div>
+                         </li>
+                         <li>
+                             <div class="inbox-avatar"><img src="https://via.placeholder.com/40/C8E6C9/333/?text=MJ" alt="MJ"></div>
+                             <div class="inbox-content">
+                                 <span class="inbox-sender">Marketing Team</span>
+                                 <span class="inbox-subject">Q3 Campaign Results & Q4 Planning</span>
+                                 <span class="inbox-snippet">Hi team, please find attached the results for Q3...</span>
+                             </div>
+                             <div class="inbox-meta">
+                                 <span class="inbox-time">9:15 AM</span>
+                             </div>
+                         </li>
+                          <li>
+                             <div class="inbox-avatar"><img src="https://via.placeholder.com/40/BBDEFB/333/?text=HR" alt="HR"></div>
+                             <div class="inbox-content">
+                                 <span class="inbox-sender">HR Department</span>
+                                 <span class="inbox-subject">Reminder: Company Wide Meeting Tomorrow</span>
+                                 <span class="inbox-snippet">Just a friendly reminder about the mandatory meeting...</span>
+                             </div>
+                             <div class="inbox-meta">
+                                 <span class="inbox-time">Yesterday</span>
+                             </div>
+                         </li>
+                         <li>
+                             <div class="inbox-avatar"><img src="https://via.placeholder.com/40/FFCDD2/333/?text=JD" alt="JD"></div>
+                             <div class="inbox-content">
+                                 <span class="inbox-sender">John Doe</span>
+                                 <span class="inbox-subject">Project Alpha Update Request</span>
+                                 <span class="inbox-snippet">Could you please provide the latest status update for Project Alpha?</span>
+                             </div>
+                              <div class="inbox-meta">
+                                 <span class="inbox-time">May 3</span>
+                             </div>
+                         </li>
+                          <li>
+                             <div class="inbox-avatar"><img src="https://via.placeholder.com/40/E1BEE7/333/?text=NT" alt="NT"></div>
+                             <div class="inbox-content">
+                                 <span class="inbox-sender">Newsletter</span>
+                                 <span class="inbox-subject">Weekly Tech Insights</span>
+                                 <span class="inbox-snippet">Top stories in tech this week: AI advancements, new gadgets...</span>
+                             </div>
+                             <div class="inbox-meta">
+                                 <span class="inbox-time">May 2</span>
+                             </div>
+                         </li>
+                     </ul>
+                 </div>
+             </div>
+             <footer class="main-footer">
+                &copy; 2025 LPN Development Group. All Rights Reserved.
+                </footer>
+             </main>
+        </main>
+
+        </div>
+
+    <script src="../dashboard/script.js"></script>
+</body>
+</html>

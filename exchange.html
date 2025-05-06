@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange</title>
+    <link rel="stylesheet" href="../dashboard/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Styles for Exchange Page */
+        .exchange-form-container { display: flex; flex-direction: column; gap: 20px; }
+        .exchange-row { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        .exchange-row label { font-weight: 500; min-width: 100px; color: #344054; }
+        .exchange-row input[type="number"], .exchange-row select {
+            padding: 10px 15px; border: 1px solid #d0d5dd; border-radius: 8px; font-size: 1em; flex-grow: 1; min-width: 150px;
+        }
+        .exchange-icon { font-size: 1.5em; color: #98a2b3; margin: 0 10px; }
+        .conversion-result { margin-top: 25px; text-align: center; }
+        .result-amount { font-size: 2em; font-weight: 600; color: #101828; }
+        .result-rate { font-size: 0.9em; color: #667085; margin-top: 5px; }
+        .convert-button { padding: 12px 30px; background-color: #5454d4; color: #ffffff; border: none; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; transition: background-color 0.2s; margin-top: 15px; }
+        .convert-button:hover { background-color: #4040a8; }
+        .rate-table { margin-top: 30px; }
+        .rate-table h3 { font-size: 1.1em; font-weight: 600; margin-bottom: 15px; color: #101828;}
+        .rate-table table { width: 100%; border-collapse: collapse; }
+        .rate-table th, .rate-table td { text-align: left; padding: 12px 15px; border-bottom: 1px solid #eaecf0; font-size: 0.95em; }
+        .rate-table th { color: #667085; font-weight: 500; }
+        .rate-table td { color: #344054; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar-left">
+            <div class="logo"> <img src="../dashboard/images/logo1234.png" alt="Logo"> </div>
+            <nav class="main-nav">
+                 <ul>
+                    <li><a href="../home/home.html" class="nav-link"><i class="fas fa-home"></i></a></li>
+                    <li><a href="../dashboard/index.html" class="nav-link"><i class="fas fa-chart-pie"></i></a></li>
+                    <li><a href="../wallet/wallet.html" class="nav-link"><i class="fas fa-wallet"></i></a></li>
+                    <li><a href="../creditcard/creditcard.html" class="nav-link"><i class="fas fa-credit-card"></i></a></li>
+                    <li><a href="../exchange/exchange.html" class="nav-link active"><i class="fas fa-exchange-alt"></i></a></li>
+                    <li><a href="../invoices/invoices.html" class="nav-link"><i class="fas fa-file-invoice-dollar"></i></a></li>
+                    <li><a href="../email/email.html" class="nav-link"><i class="fas fa-envelope"></i></a></li>
+                    <li><a href="../settings/settings.html" class="nav-link"><i class="fas fa-cog"></i></a></li>
+                    <li><a href="../logout/logout.html" class="nav-link"><i class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </nav>
+             <div class="profile-bottom">
+                 <a href="../account/account.html" title="View Account Settings">
+                     <img src="../dashboard/images/profile_pic.jpeg" alt="Profile">
+                 </a>
+             </div>
+        </aside>
+
+        <main class="main-content">
+             <header class="main-header">
+                 <h1>Currency Exchange</h1>
+             </header>
+
+             <div class="card exchange-form-container">
+                 <div class="exchange-row">
+                     <label for="amount">Amount:</label>
+                     <input type="number" id="amount" name="amount" placeholder="100.00" step="0.01">
+                     <label for="from_currency">From:</label>
+                     <select id="from_currency" name="from_currency">
+                         <option value="USD">USD - US Dollar</option>
+                         <option value="EUR">EUR - Euro</option>
+                         <option value="GBP">GBP - British Pound</option>
+                         <option value="JPY">JPY - Japanese Yen</option>
+                         <option value="THB" selected>THB - Thai Baht</option>
+                     </select>
+                 </div>
+                 <div style="text-align: center;"><i class="fas fa-exchange-alt exchange-icon"></i></div>
+                 <div class="exchange-row">
+                    <label for="to_currency">To:</label>
+                     <select id="to_currency" name="to_currency">
+                         <option value="USD" selected>USD - US Dollar</option>
+                         <option value="EUR">EUR - Euro</option>
+                         <option value="GBP">GBP - British Pound</option>
+                         <option value="JPY">JPY - Japanese Yen</option>
+                         <option value="THB">THB - Thai Baht</option>
+                     </select>
+                 </div>
+                 <div class="conversion-result">
+                     <span class="result-amount">--.--</span> <div class="result-rate">Exchange Rate: 1 THB = 0.027 USD (Example)</div> </div>
+                 <div style="text-align: center;">
+                    <button class="convert-button">Convert</button>
+                 </div>
+             </div>
+
+             <div class="card rate-table">
+                <h3>Live Exchange Rates (Example)</h3>
+                <table>
+                    <thead>
+                        <tr><th>Currency Pair</th><th>Rate</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>USD/THB</td><td>36.50</td></tr>
+                        <tr><td>EUR/THB</td><td>39.20</td></tr>
+                        <tr><td>GBP/THB</td><td>45.80</td></tr>
+                        <tr><td>JPY/THB</td><td>0.25</td></tr>
+                    </tbody>
+                </table>
+             </div>
+             <footer class="main-footer">
+                 &copy; 2025 LPN Development Group. All Rights Reserved.
+             </footer>
+        </main>
+    </div>
+    <script src="../dashboard/script.js"></script>
+</body>
+</html>
